@@ -1,18 +1,25 @@
 #!/bin/sh
-
-# Exit on errors
 set -e
 
-# Create .ssh directory
-mkdir -p ~/.ssh
+echo "Setting up SSH..."
 
-# Write the private key from the env variable
+mkdir -p ~/.ssh
 echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
 chmod 600 ~/.ssh/id_ed25519
 
-# Add known hosts (GitHub)
-ssh-keyscan github.com >> ~/.ssh/known_hosts
+echo "SSH key first lines:"
+head -n 3 ~/.ssh/id_ed25519
+echo "..."
 
-# Optional: prevent host verification prompt
+echo "Adding github.com to known_hosts..."
+ssh-keyscan github.com >> ~/.ssh/known_hosts
 chmod 644 ~/.ssh/known_hosts
+
+echo "known_hosts contents:"
+cat ~/.ssh/known_hosts
+
+echo "Testing SSH connection to github.com..."
+ssh -o StrictHostKeyChecking=no -T git@github.com || true
+
+echo "SSH setup done."
 
