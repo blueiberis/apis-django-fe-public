@@ -24,6 +24,18 @@ echo "Adding github.com to known_hosts..."
 ssh-keyscan github.com >> ~/.ssh/known_hosts
 chmod 644 ~/.ssh/known_hosts
 
+echo "Validating SSH key pair..."
+
+# Regenerate public key from the private key
+echo "Generated public key from private key:"
+ssh-keygen -y -f ~/.ssh/id_ed25519
+
+# Show fingerprint (SHA256) for double-checking
+echo "Public key fingerprint (SHA256):"
+ssh-keygen -lf ~/.ssh/id_ed25519
+
+echo "Validation done."
+
 echo "known_hosts contents:"
 cat ~/.ssh/known_hosts
 
