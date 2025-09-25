@@ -4,7 +4,7 @@ set -e
 echo "Setting up SSH..."
 
 mkdir -p ~/.ssh
-echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+echo "$SSH_PRIVATE_KEY_BASE64" | base64 -d > ~/.ssh/id_ed25519
 chmod 600 ~/.ssh/id_ed25519
 
 echo "SSH key first lines:"
