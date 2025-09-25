@@ -1,7 +1,6 @@
 {
   "buildCommand": "./build.sh",
-  "outputDirectory": ".next",
-  "startCommand": "npm start",
+  "outputDirectory": "out",
   "framework": null
 }
 
