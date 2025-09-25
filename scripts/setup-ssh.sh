@@ -46,8 +46,7 @@ eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_ed25519
 
 echo "Testing SSH connection to github.com..."
-#ssh -vvv -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 git@github.com
-ssh -o StrictHostKeyChecking=no -T git@github.com
+ssh -o StrictHostKeyChecking=no -T git@github.com || true
 
 echo "SSH setup done."
 
