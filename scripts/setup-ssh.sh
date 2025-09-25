@@ -17,8 +17,11 @@ Host github.com
   HostName github.com
   IdentityFile ~/.ssh/id_ed25519
   StrictHostKeyChecking no
+  IdentitiesOnly yes
 EOF
 chmod 600 ~/.ssh/config
+
+cat ~/.ssh/config
 
 echo "Adding github.com to known_hosts..."
 ssh-keyscan github.com >> ~/.ssh/known_hosts
