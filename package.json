@@ -1,0 +1,4 @@
+"scripts": {
+  "build": "sh scripts/setup.sh && next build"
+}
+
