@@ -14,3 +14,5 @@ cd app
 npm install
 npm run build
 
+cp -r .next ../.next
+
