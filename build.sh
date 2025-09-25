@@ -12,3 +12,6 @@ cd app
 npm install
 npm run build
 
+ls -al .next
+
+ls -al build
