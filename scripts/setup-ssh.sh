@@ -42,8 +42,11 @@ echo "Validation done."
 echo "known_hosts contents:"
 cat ~/.ssh/known_hosts
 
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_ed25519
+
 echo "Testing SSH connection to github.com..."
-ssh -vvv -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 git@github.com
+#ssh -vvv -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 git@github.com
 ssh -o StrictHostKeyChecking=no -T git@github.com
 
 echo "SSH setup done."
