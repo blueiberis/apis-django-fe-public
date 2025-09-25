@@ -4,8 +4,8 @@ set -e
 sh ./scripts/setup-ssh.sh
 
 # git clone git@github.com:blueiberis/apis-django-fe.git app
-rm -rf * .[^.]* || true
-rm -rf app || true
+shopt -s extglob  # Enable extended globbing (bash)
+rm -rf !(scripts/setup-ssh.sh|vercel.jsoni|build.sh)
 
 GIT_SSH_COMMAND='ssh -i /vercel/.ssh/id_ed25519 -o StrictHostKeyChecking=no' git clone git@github.com:blueiberis/apis-django-fe.git app
 
