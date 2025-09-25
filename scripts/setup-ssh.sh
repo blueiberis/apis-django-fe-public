@@ -40,7 +40,7 @@ echo "known_hosts contents:"
 cat ~/.ssh/known_hosts
 
 echo "Testing SSH connection to github.com..."
-ssh -o StrictHostKeyChecking=no -T git@github.com || true
+ssh -o StrictHostKeyChecking=no -T git@github.com
 
 echo "SSH setup done."
 
