@@ -17,5 +17,5 @@ cp -r app/. ./
 
 npm install
 npm run build
-npm run export
 
+rm -rf !(scripts/setup-ssh.sh|vercel.jsoni|build.sh|.next|package.json)
