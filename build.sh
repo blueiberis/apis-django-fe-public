@@ -13,6 +13,7 @@ GIT_SSH_COMMAND='ssh -i /vercel/.ssh/id_ed25519 -o StrictHostKeyChecking=no' git
 rm -rf app/.git
 
 # Copy everything (including hidden files except .git) to root
+rm package.json
 cp -r app/. ./
 
 npm install
