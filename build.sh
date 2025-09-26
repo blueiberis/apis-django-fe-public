@@ -76,9 +76,10 @@ cat package.json
 
 npm install
 npm run build
-
-ls -al .next
 cd ..
+pwd
 
-rm -rf !(vercel.json|build.sh|.next|package.json)
+ls -al app/.next
+
+rm -rf !(vercel.json|build.sh|package.json)
 
