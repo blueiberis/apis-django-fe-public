@@ -1,28 +1,6 @@
 #!/bin/bash
 set -e
 
-setup_ssh
-
-shopt -s extglob  # Enable extended globbing (bash)
-rm -rf !(vercel.json|build.sh|package.json)
-rm -rf .git
-rm -rf .vercel
-
-# GIT_SSH_COMMAND='ssh -i /vercel/.ssh/id_ed25519 -o StrictHostKeyChecking=no' git clone git@github.com:blueiberis/apis-django-fe.git app
-git clone git@github.com:blueiberis/apis-django-fe.git app
-
-# Remove the .git folder inside app to avoid overwriting root's git info
-rm -rf app/.git
-
-# Copy everything (including hidden files except .git) to root
-ls -al
-cp -r app/. ./
-
-npm install
-npm run build
-
-rm -rf !(vercel.json|build.sh|.next|package.json)
-
 setup_ssh() {
 	echo "Setting up SSH..."
 
@@ -36,11 +14,11 @@ setup_ssh() {
 
 	echo "Creating SSH config..."
 	cat > ~/.ssh/config << EOF
-	Host github.com
-		HostName github.com
-		IdentityFile ~/.ssh/id_ed25519
-		StrictHostKeyChecking no
-		IdentitiesOnly yes
+Host github.com
+	HostName github.com
+	IdentityFile ~/.ssh/id_ed25519
+	StrictHostKeyChecking no
+	IdentitiesOnly yes
 EOF
 	chmod 600 ~/.ssh/config
 
@@ -73,3 +51,26 @@ EOF
 
 	echo "SSH setup done."
 }
+
+setup_ssh
+
+shopt -s extglob  # Enable extended globbing (bash)
+rm -rf !(vercel.json|build.sh|package.json)
+rm -rf .git
+rm -rf .vercel
+
+# GIT_SSH_COMMAND='ssh -i /vercel/.ssh/id_ed25519 -o StrictHostKeyChecking=no' git clone git@github.com:blueiberis/apis-django-fe.git app
+git clone git@github.com:blueiberis/apis-django-fe.git app
+
+# Remove the .git folder inside app to avoid overwriting root's git info
+rm -rf app/.git
+
+# Copy everything (including hidden files except .git) to root
+ls -al
+cp -r app/. ./
+
+npm install
+npm run build
+
+rm -rf !(vercel.json|build.sh|.next|package.json)
+
