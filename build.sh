@@ -75,8 +75,7 @@ cd app
 cat package.json
 
 npm install
-#npm run build
-next build
+npm run build
 
 ls -al .next
 cd ..
