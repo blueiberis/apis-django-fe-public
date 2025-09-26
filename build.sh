@@ -77,11 +77,4 @@ cat package.json
 npm install
 npm run build
 cd ..
-pwd
-
-ls -al app/.next
-ls -al /vercel/path0/app/.next/routes-manifest.json
-cat /vercel/path0/app/.next/routes-manifest.json
-
-rm -rf !(vercel.json|build.sh|package.json)
 
