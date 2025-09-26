@@ -64,6 +64,9 @@ git clone git@github.com:blueiberis/apis-django-fe.git app
 
 # Remove the .git folder inside app to avoid overwriting root's git info
 rm -rf app/.git
+rm -rf app/.husky
+echo "Removing husky prepare script from app/package.json..."
+jq 'del(.scripts.prepare)' app/package.json > app/package.tmp.json && mv app/package.tmp.json app/package.json
 
 # Copy everything (including hidden files except .git) to root
 ls -al
