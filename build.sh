@@ -76,5 +76,7 @@ npm install
 #npm run build
 next build
 
+ls -al .next
+
 rm -rf !(vercel.json|build.sh|.next|package.json)
 
