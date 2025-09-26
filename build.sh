@@ -73,7 +73,8 @@ cp -r app/. ./
 cat package.json
 
 npm install
-npm run build
+#npm run build
+next build
 
 rm -rf !(vercel.json|build.sh|.next|package.json)
 
