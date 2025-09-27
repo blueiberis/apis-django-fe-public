@@ -52,29 +52,20 @@ EOF
 	echo "SSH setup done."
 }
 
-setup_ssh
+build_app() {
+	rm -rf app
+	git clone git@github.com:blueiberis/apis-django-fe.git app
+	cd app
+	rm -rf .husky
+	sed -i '/"prepare": *"husky",*/d' package.json
+	npm install
+	npm run build
+}
 
-shopt -s extglob  # Enable extended globbing (bash)
-rm -rf !(vercel.json|build.sh|package.json)
-rm -rf .git
-rm -rf .vercel
-rm -rf app
+main() {
+	setup_ssh
+	build_app
+}
 
-# GIT_SSH_COMMAND='ssh -i /vercel/.ssh/id_ed25519 -o StrictHostKeyChecking=no' git clone git@github.com:blueiberis/apis-django-fe.git app
-git clone git@github.com:blueiberis/apis-django-fe.git app
-
-# Remove the .git folder inside app to avoid overwriting root's git info
-rm -rf app/.git
-rm -rf app/.husky
-echo "Removing 'prepare': 'husky' from app/package.json..."
-sed -i '/"prepare": *"husky",*/d' app/package.json
-
-# Copy everything (including hidden files except .git) to root
-#cp -r app/. ./
-cd app
-cat package.json
-
-npm install
-npm run build
-cd ..
+main
 
